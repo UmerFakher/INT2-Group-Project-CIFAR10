@@ -3,6 +3,7 @@
 File_Manager_Tar_Gz.py: 
 download_file_tar_gz: Checks if download file already exists, otherwise downloads .tar.gz file from dataset link.
 open_file_tar_gz: Checks if extracted folder already exists, otherwise extracts .tar.gz file.
+unpickle: Read data from batch files. Function taken from https://www.cs.toronto.edu/~kriz/cifar.html
 """
 
 __author__      = "Umer Fakher"
@@ -56,6 +57,15 @@ def open_file_tar_gz(file_name, check_extracted_folder_name='cifar-10-batches-py
     else:
         print("Error: File already extracted as folder {}/".format(check_extracted_folder_name))
         return False
+
+def unpickle(file_name):
+    """ Open batch files.
+    Function taken from: https://www.cs.toronto.edu/~kriz/cifar.html
+    """
+    import pickle
+    with open(file_name, 'rb') as fo:
+        dico = pickle.load(fo, encoding='bytes')
+    return dico
 
 if __name__ == "__main__":
     file_name = "cifar-10-python.tar.gz"
