@@ -1,8 +1,10 @@
 import numpy as np
 import copy
 import time
+import math
 
 ################################################ images and labels
+
 training_set1 = []
 training_set2 = []
 training_set3 = []
@@ -21,27 +23,32 @@ testing_labels = []
 weights = [0] * 6
 biases = [0] * 6
 
+
+current_depth = 6
+
+
 def initialise_w_and_b():
 
     global weights
     global biases
 
-    weights[0] = np.random.randn(3072, 3072)
-    weights[1] = np.random.randn(3072, 3072)
-    weights[2] = np.random.randn(3072, 3072)
-    weights[3] = np.random.randn(3072, 3072)
-    weights[4] = np.random.randn(3072, 3072)
-    weights[5] = np.random.randn(3072, 10)
-    biases[0] = np.zeros(3072)
-    biases[1] = np.zeros(3072)
-    biases[2] = np.zeros(3072)
-    biases[3] = np.zeros(3072)
-    biases[4] = np.zeros(3072)
+    weights[0] = np.random.rand(100, 3072)
+    weights[1] = np.random.rand(100, 100)
+    weights[2] = np.random.rand(100, 100)
+    weights[3] = np.random.rand(100, 100)
+    weights[4] = np.random.rand(100, 100)
+    weights[5] = np.random.rand(10, 100)
+    biases[0] = np.zeros(100)
+    biases[1] = np.zeros(100)
+    biases[2] = np.zeros(100)
+    biases[3] = np.zeros(100)
+    biases[4] = np.zeros(100)
     biases[5] = np.zeros(10)
 
 
 layer_outputs = [0] * 6
-
+learning_rate = 0.1
+expected_output = [0] * 10
 
 
 def main():
@@ -50,58 +57,92 @@ def main():
     populate_images()
     initialise_w_and_b()
 
-    output = training_set1[0]
-
-    for i in range(0, 6):
-        output = forward_prop(output, i)
-        normalize_multiplier = max(output)
-        output = output / normalize_multiplier
-
-    cost = cost_function(output, training_labels1[0])
-
-    for j in range(5, -1, -1):
-        backward_prop(j, cost)
-
-    print("yeet")
+    start = time.time()
+    train(training_set1, training_labels1)
+    end = time.time()
+    print(end - start, "seconds")
 
 
-def forward_prop(x, layer):           # pass the input through the layer of the neural network
-    output = relu(np.dot(x, weights[layer]) + biases[layer])
+def train(images = [], labels = []):
+
+    for i in range(0, 100):
+        output = copy.deepcopy(images[i]) / 255
+
+        for j in range(0, current_depth):
+            output = forward_prop(output, j)
+            normalization_factor = np.linalg.norm(output)
+            if normalization_factor != 0:
+                output = output / normalization_factor
+
+            print(output)
+
+        actual_results(labels[i])
+
+        output_error = expected_output - output
+
+        cost = cost_function(output)
+
+        print("#####################################################################################")
+
+        for k in range(current_depth - 2, -1, -1):
+             output_error = backward_prop(copy.deepcopy(images[i]) / 255, output_error, k)
+
+        print("#####################################################################################")
+
+
+def forward_prop(x = [], layer = 0):           # pass the input through the layer of the neural network
+    output = relu(np.dot(x, np.transpose(weights[layer])) + biases[layer])
+    layer_outputs[layer] = output
     return output
 
 
-def backward_prop(layer, cost):
-    # pass the output and cost back through the neural network to change the weights and biases
-    output = np.dot(layer_outputs[layer], cost * relu_derivative(layer_outputs[layer], layer))
+def backward_prop(image = [], output_error = [], layer = 0):
+    # pass the output and cost back through the neural network to change the weights and biases using gradient descent
+
+    error = np.dot(((np.transpose(weights[layer + 1])) * output_error), relu_derivative(layer_outputs[layer + 1]))
+
+    weights_gradient = layer_outputs[layer - 1] * error ######################
+    biases_gradient = error
+
+    weights[layer] = weights[layer] - np.transpose([(learning_rate * weights_gradient)])
+    biases[layer] = biases[layer] - (learning_rate * biases_gradient)
+
+    return error
 
 
-def cost_function(results, actual_value):
+def cost_function(results = []):
     
     cost = 0
     
     for i in range(0, len(results)):
-        if i == actual_value:
-            cost += (1 - results[i])
-        else:
-            cost += (0 - results[i])
-
-    cost = cost / len(results)
+        cost += ((expected_output[i] - results[i])**2) / 1
 
     return cost
 
 
-
-def relu(x):
+def relu(x = []):
     output = ((np.absolute(x) + x) / 2)
     return output.astype(int)
 
 
-def relu_derivative(x, layer):
-    
-    output = (x + np.absolute(x)) / (2 * x)
-    output = np.dot(output, weights[layer])
+def relu_derivative(x = [],):
+    output = copy.deepcopy(x)
+    for i in range(0, len(output)):
+        if output[i] > 0:
+            output[i] = 1
+        else:
+            output[i] = 0
+    print(output)
     return output
 
+
+def actual_results(label):
+    
+    for i in range(0, 10):
+        if i == label:
+            expected_output[i] = 1
+        else:
+            expected_output[i] = 0
 
 
 def populate_images():
@@ -147,4 +188,3 @@ def unpickle(file):
 
 if __name__ == "__main__":
     main()
-
