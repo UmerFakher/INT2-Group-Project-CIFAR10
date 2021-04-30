@@ -75,25 +75,42 @@ We can use max pooling to reduce the size of a feature map.
 Essentially we filter something like this:
 
 1 3 4 5
+
 2 3 1 0
+
 0 2 3 5 
+
+1 2 0 1
 
 Using outputting from a filter of 2x2 dimensions:
 
 3 5
-3 5
 
-So you can see it looks at the top
+2 5
+
+So you can see it looks at the top left:
+
 1 3
-2 3    and gets the max which is 3. Then it pools top right then bottom left then bottom right
+
+2 3    
+
+and the max pooling makes these 4 values in to a single value which is 3 as it is the max
+
+Then it pools top right then bottom left then bottom right
 
 You can see here we reduced the size from 4 x 4 to 2 x 2 which is a pretty large saving when you scale.
 
 Also a note here we assume we are using a *stride* of 2 which means that we go from
+
 1 3         4 5
+
 2 3   to    1 0
+
 rather than using a stride of 1 which would move right by 1 step like this:
+
 3 4
+
 3 1
+
 In which case it would reduce the whole thing from 4 x 4 to 3 x 3 using stride 1 with a filter of dimesion 2 x 2.
 
