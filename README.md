@@ -114,3 +114,5 @@ rather than using a stride of 1 which would move right by 1 step like this:
 
 In which case it would reduce the whole thing from 4 x 4 to 3 x 3 using stride 1 with a filter of dimesion 2 x 2.
 
+
+So this **pooling will help us** reduce these computations, dimensionality and overfitting as not as many numbers so this model should be better at dealing with differences and variations in images and placement of objects etc
