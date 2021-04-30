@@ -31,3 +31,26 @@ We get a low training accuracy and testing accuracy so we must change our approa
 ## NN Convolutional Neural Network
 
 This is better suited so we get higher accuracy on this complex image dataset than the flawed naive network.
+
+From looking at some of the images in this dataset you can easily pick the class/label of an image Dog or Frog etc. 
+Your neurons look for specific features perhaps lines and then at a higher level of abstraction you may pick out shapes and then going even further you may pick out body parts, perhaps a cats head, tail and wiskers and you know its a cat.
+
+lines -> shapes -> parts of image -> what image is made of
+
+**We want to detect these features.** The small ones and put these together to get larger ones until we can work out what the image is.
+
+So we need to apply small filters to the image to detects shapes/parts. These output **feature maps** which will highlight whether and where in the image the filters detect that part/shape/feature!
+
+So this part is called **feature extraction** where we are getting lines and then shapes and then object parts detected from these feature maps, and then we must flatten all this information and run a **classification** similar to our network above. 
+
+So essentially we are strapping on this idea of **convolutions** onto our network from before.
+
+Quick explaination:
+
+[ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) literally is a activation function that given any input less than 0, it outputs 0 and any input greater than or equal to 0 it outputs that same value.
+So ReLu is basically a flat line that suddenly spikes diagonally to the right after 0:
+       
+<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)/">
+  <img alt="ReLu Graph" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/ReLU_and_GELU.svg/1920px-ReLU_and_GELU.svg.png"
+  width="300" height="300">
+</a>
