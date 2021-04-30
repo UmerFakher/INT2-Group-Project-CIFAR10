@@ -48,9 +48,14 @@ So essentially we are strapping on this idea of **convolutions** onto our networ
 Quick explaination:
 
 [ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) literally is a activation function that given any input less than 0, it outputs 0 and any input greater than or equal to 0 it outputs that same value.
+
+* ReLu brings non-linearity in our model. 
+* It takes in a feature map as input and outputs the same but makes all the negative values 0 and leaves all positve values untouched
+
 So ReLu is basically a flat line that suddenly spikes diagonally to the right after 0:
-       
-<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)/">
+
+<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">
   <img alt="ReLu Graph" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/ReLU_and_GELU.svg/1920px-ReLU_and_GELU.svg.png"
   width="300" height="300">
 </a>
+
