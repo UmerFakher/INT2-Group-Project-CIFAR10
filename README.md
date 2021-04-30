@@ -12,7 +12,7 @@ Here we use Softmax. Given a specific example Softmax will output probabilities 
 
 Although our images are fairly complicated. This might have been fine for numerical data and classifying that or simple images e.g. black and white letters or something.
 
-**Some drawbacks: **
+**Some drawbacks:**
 
 * Here this is going to require too much computation
 
@@ -72,27 +72,33 @@ so to deal with this we are going to use **pooling** to reduce the size
 
 We can use max pooling to reduce the size of a feature map.
 
+<a href="https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer">
+  <img alt="ReLu Graph" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Max_pooling.png/471px-Max_pooling.png"
+  width="300" height="300">
+</a>
+Max pooling with filter of dimensions 2 by 2 and stride as 2
+
 Essentially we filter something like this:
 
-1 3 4 5
+1 0 2 3
 
-2 3 1 0
+4 6 6 8
 
-0 2 3 5 
+3 1 1 0
 
-1 2 0 1
+1 2 2 4
 
 Using outputting from a filter of 2x2 dimensions:
 
-3 5
+6 8 
 
-2 5
+3 4
 
 So you can see it looks at the top left:
 
-1 3
+1 0
 
-2 3    
+4 6   
 
 and the max pooling makes these 4 values in to a single value which is 3 as it is the max
 
@@ -102,15 +108,15 @@ You can see here we reduced the size from 4 x 4 to 2 x 2 which is a pretty large
 
 Also a note here we assume we are using a *stride* of 2 which means that we go from
 
-1 3         4 5
+1 0         2 3
 
-2 3   to    1 0
+4 6   to    6 8
 
 rather than using a stride of 1 which would move right by 1 step like this:
 
-3 4
+0 2
 
-3 1
+6 6
 
 In which case it would reduce the whole thing from 4 x 4 to 3 x 3 using stride 1 with a filter of dimesion 2 x 2.
 
