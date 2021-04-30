@@ -2,6 +2,7 @@
 
 - [The CIFAR-10 Dataset Link](https://www.cs.toronto.edu/~kriz/cifar.html)
 
+*Use this information in the report.*
 
 ## [**NN_Naive_ALLBatch_Refactored.ipynb**](https://github.com/UmerFakher/INT2-Group-Project-CIFAR10/blob/Automated-Dataset-DownloadExtractPicklePlot-UF/NN_Naive_ALLBatch_Refactored.ipynb)
 
@@ -11,9 +12,13 @@ Here we use Softmax. Given a specific example Softmax will output probabilities 
 
 Although our images are fairly complicated. This might have been fine for numerical data and classifying that or simple images e.g. black and white letters or something.
 
-Here this is going to require too much computation
-It also is at risk of overfitting if there is too much variation and we can see that some of these cats for example, are in different positions and parts of the image and our network will struggle with this
-As we are feeding in data flattened (each image is just an array of numeric values 1x 3072 vector) it literally treats all of the parts of the image the same and data which is close together (in 2D maybe they are together) the same as far apart data
+**Some drawbacks: **
+
+* Here this is going to require too much computation
+
+*It also is at risk of overfitting if there is too much variation and we can see that some of these cats for example, are in different positions and parts of the image and our network will struggle with this
+
+* As we are feeding in data flattened (each image is just an array of numeric values 1x 3072 vector) it literally treats all of the parts of the image the same and data which is close together (in 2D maybe they are together) the same as far apart data
 Our images in 2D would be 32 x 32 x 3 size. 32 by 32 for dimensions height and width and the 3 for the colour depth (rgb, red green blue values like 120, -63, 24).
 
 Flattened each image is 1 x 3072.
@@ -45,11 +50,12 @@ So this part is called **feature extraction** where we are getting lines and the
 
 So essentially we are strapping on this idea of **convolutions** onto our network from before.
 
-Quick explaination:
+## ReLU activation function Quick explanation
+We also used the ReLu activation function in the naive model as well.
 
 [ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) literally is a activation function that given any input less than 0, it outputs 0 and any input greater than or equal to 0 it outputs that same value.
 
-* ReLu brings non-linearity in our model. 
+* ReLu helps making the model **nonlinear**
 * It takes in a feature map as input and outputs the same but makes all the negative values 0 and leaves all positve values untouched
 
 So ReLu is basically a flat line that suddenly spikes diagonally to the right after 0:
@@ -58,4 +64,36 @@ So ReLu is basically a flat line that suddenly spikes diagonally to the right af
   <img alt="ReLu Graph" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/ReLU_and_GELU.svg/1920px-ReLU_and_GELU.svg.png"
   width="300" height="300">
 </a>
+
+## [Pooling](https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer)
+
+**We said in the drawbacks** that there was just going to be too much computation involved with the naive network
+so to deal with this we are going to use **pooling** to reduce the size
+
+We can use max pooling to reduce the size of a feature map.
+
+Essentially we filter something like this:
+
+1 3 4 5
+2 3 1 0
+0 2 3 5 
+
+Using outputting from a filter of 2x2 dimensions:
+
+3 5
+3 5
+
+So you can see it looks at the top
+1 3
+2 3    and gets the max which is 3. Then it pools top right then bottom left then bottom right
+
+You can see here we reduced the size from 4 x 4 to 2 x 2 which is a pretty large saving when you scale.
+
+Also a note here we assume we are using a *stride* of 2 which means that we go from
+1 3         4 5
+2 3   to    1 0
+rather than using a stride of 1 which would move right by 1 step like this:
+3 4
+3 1
+In which case it would reduce the whole thing from 4 x 4 to 3 x 3 using stride 1 with a filter of dimesion 2 x 2.
 
