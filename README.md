@@ -131,6 +131,8 @@ So this **pooling will help us** reduce these computations, dimensionality and o
 
 ## Convolution Neural Network Summary
 
+### Strength of our approach:
+
 So an advantage of this convolutional approach is that not all nodes are connected to every other node like in a naive neural network, and as a result this helps to prevent **overfitting**. The advantage of pooling is that it reduces the dimensionality of our problem and consequently helps reduce overfitting. Moreover using **convolutions** and **pooling** will allow us to detect and extract features that could be located in different parts of the image, depending on the image example and this should mean in theory that the network will be more robust in handling for example a plane's wing shown in **different positions**. In summary, our model becomes more robust in the face of small differences and challenges that are presented by the varying dataset.
 
 In addition, when the model learns the parameters for a filter, you can apply them in the in other parts of the image and as a result this reduces the number of weights needed in the network also.  This is often called parameter sharing: https://en.wikipedia.org/wiki/Convolutional_neural_network#Convolutional_layer.
@@ -141,3 +143,14 @@ As discussed above ReLu activation function helps make the model **nonlinear**, 
 As mention that the network will be more robust in handling for example a plane's wing shown in **different positions**, but just as a clarification if we have complex rotations of features or even different scaled images such as smaller cats and larger cats then the convolution neural network will require such training examples that have been scaled or rotated. 
 
 Luckily it seems the Cifar-10 dataset had quite a different images like this so this should be sufficient however if we are still reaching a low testing accuracy then this could be an area to improve perhaps using **data augmentation** where we could create new images so we have more training examples from existing ones that are scaled or rotated.
+
+### Quick Summary
+
+The convolutional neural network consists of:
+* Feature Extraction ('Convolution with ReLu, then pooling' which may be repeated several times) 
+Each convolution with ReLu layer learns a feature through filters (a bunch of weights), for example the first convolution with relu layer may learn lines and shapes whereas the next could learn specific object parts such as plane wing or cat's tail and this builds up to more abstract features.
+
+The network automatically detects and learns the filters as part of training we input multiple instances of images (for all 10 classes) for example that are classed as planes or cats. Using backpropagation the network will figure out the good numerical values of the weights in filters. Hyperparameters may include how many filters we want to specify and the dimensions of these filters. The values of the filters are then self-learned by the network through training.
+
+* Softmax Classification after a flatten, to generate probabilities of which image class, the image example that is given as input, could belong to. This layer ends up classifying what the image is out of our 10 classes.
+
