@@ -50,12 +50,12 @@ So this part is called **feature extraction** where we are getting lines and the
 
 So essentially we are strapping on this idea of **convolutions** onto our network from before.
 
-## ReLU activation function Quick explanation
+## [ReLU activation function](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))
 We also used the ReLu activation function in the naive model as well.
 
 [ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) literally is a activation function that given any input less than 0, it outputs 0 and any input greater than or equal to 0 it outputs that same value.
 
-* ReLu helps making the model **nonlinear**
+* ReLu helps making the model **nonlinear** and this is needed as our problem is complicated and multi-dimensional
 * It takes in a feature map as input and outputs the same but makes all the negative values 0 and leaves all positve values untouched
 
 So ReLu is basically a flat line that suddenly spikes diagonally to the right after 0:
@@ -64,6 +64,8 @@ So ReLu is basically a flat line that suddenly spikes diagonally to the right af
   <img alt="ReLu Graph" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/ReLU_and_GELU.svg/1920px-ReLU_and_GELU.svg.png"
   width="300" height="300">
 </a>
+
+Image Link: https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 
 ## [Pooling](https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer)
 
@@ -76,6 +78,9 @@ We can use max pooling to reduce the size of a feature map.
   <img alt="ReLu Graph" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Max_pooling.png/471px-Max_pooling.png"
   width="300" height="300">
 </a>
+
+Image Link: https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer
+
 Max pooling with filter of dimensions 2 by 2 and stride as 2
 
 Essentially we filter something like this:
@@ -122,3 +127,13 @@ In which case it would reduce the whole thing from 4 x 4 to 3 x 3 using stride 1
 
 
 So this **pooling will help us** reduce these computations, dimensionality and overfitting as not as many numbers so this model should be better at dealing with differences and variations in images and placement of objects etc
+
+
+## Convolution Neural Network Summary
+
+So an advantage of this convolutional approach is that not all nodes are connected to every other node like in a naive neural network, and as a result this helps to prevent **overfitting**. The advantage of pooling is that it reduces the dimensionality of our problem and consequently helps reduce overfitting. Moreover using **convolutions** and **pooling** will allow us to detect and extract features that could be located in different parts of the image, depending on the image example and this should mean in theory that the network will be more robust in handling for example a plane's wing shown in different orientations/positions. In summary, our model becomes more robust in the face of small differences and challenges that are presented by the varying dataset.
+
+In addition, when the model learns the parameters for a filter, you can apply them in the in other parts of the image and as a result this reduces the number of weights needed in the network also.  This is often called parameter sharing: https://en.wikipedia.org/wiki/Convolutional_neural_network#Convolutional_layer.
+
+As discussed above ReLu activation function helps make the model **nonlinear**, fit to solve our complicated and multi-dimensional problem. It is very efficient and quick to calculate as all it does is set all negative values to 0 and doesn't touch the positive values.
+
