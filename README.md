@@ -35,6 +35,8 @@ We get a low training accuracy and testing accuracy so we must change our approa
 
 ## NN Convolutional Neural Network
 
+E.g. [CIFAR10_CNN_Model_ColabShortened.ipynb](https://github.com/UmerFakher/INT2-Group-Project-CIFAR10/blob/Automated-Dataset-DownloadExtractPicklePlot-UF/CIFAR10_CNN_Model_ColabShortened.ipynb)
+
 This is better suited so we get higher accuracy on this complex image dataset than the flawed naive network.
 
 From looking at some of the images in this dataset you can easily pick the class/label of an image Dog or Frog etc. 
