@@ -2,6 +2,21 @@
 
 - [The CIFAR-10 Dataset Link](https://www.cs.toronto.edu/~kriz/cifar.html)
 
+## Model Summaries
+
+Use this in report:
+
+* CIFAR10_ANN_NaiveModel.ipynb -> Naive ANN Relu + softmax Classifier Unseen Acc of 41 %
+* CIFAR10_CNN_Model_eachBatch10epoch.ipynb -> Simple CNN Feature Extraction Convolution & Pooling layers Unseen Acc of 66.7%
+* CIFAR10_CNN_Model_concatBatches.ipynb -> CNN with combined training and less overfitting on batches (e.g. not 10 epochs of for each batch) Unseen Acc of 70.6%
+
+Then needed to use Colab for vastly quicker training times and computing power:
+
+* CIFAR10_CNN_Model_ColabReady.ipynb    -> Simple CNN Unseen Acc of 71 %
+* CIFAR10_CNN_Model_ColabShortened.ipynb -> Larger CNN using Batch Normalisation + other Unseen Acc of 85% (usually 86%) 
+* CIFAR10_CNN_Augmented_Model_Colab.ipynb -> Data Augmentation used. Unseen Acc of **87.87%.**
+
+
 *Use this information in the report.*
 
 ## [**NN_Naive_ALLBatch_Refactored.ipynb**](https://github.com/UmerFakher/INT2-Group-Project-CIFAR10/blob/Automated-Dataset-DownloadExtractPicklePlot-UF/NN_Naive_ALLBatch_Refactored.ipynb)
