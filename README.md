@@ -15,6 +15,7 @@ Then needed to use Colab for vastly quicker training times and computing power:
 * CIFAR10_CNN_Model_ColabReady.ipynb    -> Simple CNN Unseen Acc of 71 %
 * CIFAR10_CNN_Model_ColabShortened.ipynb -> Larger CNN using Batch Normalisation + other Unseen Acc of 85% (usually 86%) 
 * CIFAR10_CNN_Augmented_Model_Colab.ipynb -> Data Augmentation used. Unseen Acc of **87.87%.**
+  *   **-> Saved Model File:** *"augmodel1_07-05-21_test_acc_87p.h5"* wDataAugmentation TestAcc 87.87%
 
 
 *Use this information in the report.*
