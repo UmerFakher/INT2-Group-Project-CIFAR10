@@ -32,6 +32,10 @@ Hardware and environment transitioned to  Google Colab Cloud based ipython noteb
 
 ![image](https://user-images.githubusercontent.com/66469756/117465501-ae7f8c00-af49-11eb-84e5-c544de0f512b.png)
 
+### Plot Training Accuracy and Loss over Epochs
+![image](https://user-images.githubusercontent.com/66469756/117466801-02d73b80-af4b-11eb-898d-f3abe702d534.png)
+
+
 ### Example of a difficult problem 
 
 However, it seems naturally that the network struggles with man-made vehicles due to feature similarities combined with the low resolution images. As seen in confusion matrix. Although, the model generally is pretty good.
