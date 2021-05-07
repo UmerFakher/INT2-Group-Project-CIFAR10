@@ -17,6 +17,34 @@ Then needed to use Colab for vastly quicker training times and computing power:
 * CIFAR10_CNN_Augmented_Model_Colab.ipynb -> Data Augmentation used. Unseen Acc of **87.87%.**
   *   **-> Saved Model File:** *"augmodel1_07-05-21_test_acc_87p.h5"* wDataAugmentation TestAcc 87.87%
 
+## [Best Model CIFAR10_CNN_Augmented_Model_Colab.ipynb](https://github.com/UmerFakher/INT2-Group-Project-CIFAR10/blob/Automated-Dataset-DownloadExtractPicklePlot-UF/CIFAR10_CNN_Augmented_Model_Colab.ipynb)
+
+Hardware and environment transitioned to  Google Colab Cloud based ipython notebook service to train the model on Cloud GPU in a more reasonable training time.
+
+### Results for Augmented CNN Model:
+![image](https://user-images.githubusercontent.com/66469756/117465858-04543400-af4a-11eb-8aca-64191b722509.png)
+
+### Training time for Augmented CNN Model:
+![image](https://user-images.githubusercontent.com/66469756/117465927-13d37d00-af4a-11eb-9193-9d2fecbabd0a.png)
+
+
+### Confusion Matrix
+
+![image](https://user-images.githubusercontent.com/66469756/117465501-ae7f8c00-af49-11eb-84e5-c544de0f512b.png)
+
+### Example of a difficult problem 
+
+However, it seems naturally that the network struggles with man-made vehicles due to feature similarities combined with the low resolution images. As seen in confusion matrix. Although, the model generally is pretty good.
+
+![image](https://user-images.githubusercontent.com/66469756/117465562-bb03e480-af49-11eb-8477-9188266ec126.png)
+
+### Model Diagram
+
+![image](https://user-images.githubusercontent.com/66469756/117466109-43828500-af4a-11eb-8a23-a59ea10e92d2.png)
+
+### Data Augmentation
+![image](https://user-images.githubusercontent.com/66469756/117466263-6ca31580-af4a-11eb-8d12-f277827718e4.png)
+
 
 *Use this information in the report.*
 
